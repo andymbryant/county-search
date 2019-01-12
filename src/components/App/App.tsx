@@ -47,13 +47,6 @@ class App extends Component {
 				<header>
 					<h1>County Search</h1>
 				</header>
-				{/* {this.state.levels.map((l) => {
-					return (
-						<GroupOption />
-					)
-				})
-
-				} */}
 			</div>
 		);
 	}
