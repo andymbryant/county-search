@@ -49,8 +49,14 @@ class App extends Component {
 					return data.splice(j, 1)
 				}
 			})
-			data.splice(i + 1, 0, ...children)
+			if (children.length === 0) {
+				d.isBotClass = true
+			} else {
+				data.splice(i + 1, 0, ...children)
+				d.isBotClass = false
+			}
 		})
+		console.log(data)
 		data.forEach((d) => {
 			if (!levels.includes(d.level)) {
 				levels.push(d.level)
