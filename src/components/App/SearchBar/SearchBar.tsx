@@ -10,7 +10,7 @@ type MyProps = {
 class SearchBar extends Component<MyProps> {
 
     state = {
-        query: 'gb'
+        query: 'we'
     }
 
     render() {
@@ -37,9 +37,16 @@ class SearchBar extends Component<MyProps> {
                         return true
                     }
                 }
+                // if (levels.indexOf(e.level) === levels.length -2)
+
+                // })
             })
         }
-
+        if (!data) {
+            <div className="search-bar">
+                <input type="text" className="search-field" placeholder="No Results" />
+            </div>
+        }
         return (
             <div className="search-bar">
                 <input type="text" className="search-field" />
