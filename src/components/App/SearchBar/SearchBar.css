@@ -1,0 +1,33 @@
+.search-bar {
+    width: 300px;
+    display: block;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.search-field {
+    width: 100%;
+    border: var(--border);
+    border-bottom: none;
+    padding: .5rem 1rem;
+}
+
+.search-field:focus {
+    outline: none;
+}
+
+.search-items {
+    width: 100%;
+    border: var(--border);
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1rem;
+}
+
+.item {
+    width: 100%;
+    text-align: left;
+    width: 150px;
+}
