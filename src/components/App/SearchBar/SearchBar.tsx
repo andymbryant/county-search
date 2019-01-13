@@ -10,7 +10,7 @@ type MyProps = {
 class SearchBar extends Component<MyProps> {
 
     state = {
-        query: 'fl'
+        query: 'gb'
     }
 
     render() {
@@ -18,13 +18,24 @@ class SearchBar extends Component<MyProps> {
         const { query } = this.state;
         let style = {} as Object;
         let levelClass: String = '';
+        let levelDifference: Number = 0;
 
         if (this.state.query) {
-            data = data.filter((d: any) => {
+            data = data.filter((d: any, i: any) => {
                 if (d.isBotLevel) {
-                    return d.name.toLowerCase().includes(query.toLowerCase())
+                    return d.name.toLowerCase().includes(query.toLowerCase());
                 } else {
+                    return true;
+                }
+            })
+            data = data.filter((e: any, j: any) => {
+                if (e.isBotLevel) {
                     return true
+                } else {
+                    levelDifference = Math.abs(levels.indexOf(e.level) - (levels.length))
+                    if (data[j + levelDifference].isBotLevel) {
+                        return true
+                    }
                 }
             })
         }

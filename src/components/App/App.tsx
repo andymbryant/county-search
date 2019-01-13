@@ -43,6 +43,11 @@ class App extends Component {
 	formatData = (data: any[]) => {
 		let children: any[] = [];
 		let levels: any[] = [];
+		data.forEach((d) => {
+			if (!levels.includes(d.level)) {
+				levels.push(d.level)
+			}
+		})
 		data.forEach((d, i) => {
 			children = data.filter((e, j) => {
 				if (e.parent === d.id) {
@@ -55,14 +60,22 @@ class App extends Component {
 				data.splice(i + 1, 0, ...children)
 				d.isBotLevel = false
 			}
-			// d.children = children;
+			// function addBotDescendentsToAncestor(children: any[], id: Number) {
+			// 	data.forEach(f => {
+			// 		if (f.id === id) {
+			// 			f.children = [...children];
+			// 			if (f.parent) {
+			// 				console.log(f)
+			// 				addBotDescendentsToAncestor(children, f.parent)
+			// 			}
+			// 		}
+			// 	})
+			// }
+			// if (levels.indexOf(d.level) === levels.length - 2) {
+			// 	addBotDescendentsToAncestor(children, d.id)
+			// }
 		})
 		console.log(data)
-		data.forEach((d) => {
-			if (!levels.includes(d.level)) {
-				levels.push(d.level)
-			}
-		})
 
 		this.setState({
 			data,
