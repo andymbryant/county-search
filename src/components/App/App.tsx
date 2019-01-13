@@ -68,9 +68,9 @@ class App extends Component {
 					<div className="search-bar">
 						<select name="select" id="search-bar">
 							{this.state.topLevelData !== null ? this.state.topLevelData.map((data: any) => {
-								console.log(data)
 								return (
 									<Option
+										allData={this.state.data}
 										data={data}
 										id={data.id}
 										key={data.id}
