@@ -71,7 +71,7 @@ class App extends Component {
 				<header>
 					<h1>County Search</h1>
 				</header>
-				{this.state.data.length !== 0 ? <SearchBar data={this.state.data} /> : null}
+				{this.state.data.length !== 0 ? <SearchBar data={this.state.data} levels={this.state.levels} /> : null}
 			</div>
 		)
 	}
