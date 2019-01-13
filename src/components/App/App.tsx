@@ -46,11 +46,12 @@ class App extends Component {
 	formatData = (data: any[]) => {
 		let children: any[] = [];
 		data.forEach((d, i) => {
-			children = data.filter((e, i) => { return e.parent === d.id })
-			if (children.length > 0) {
-				d.children = children;
-			}
-
+			children = data.filter((e, j) => {
+				if (e.parent === d.id) {
+					return data.splice(j, 1)
+				}
+			})
+			data.splice(i + 1, 0, ...children)
 		})
 		this.setState({
 			data,
@@ -69,15 +70,15 @@ class App extends Component {
 					</header>
 					<div className="search-bar">
 						<select name="select" id="search-bar">
-							{this.state.data !== null ? this.state.data.map((data: any) => {
-								console.log(data)
-								// return (
-								// 	<Option
-								// 		data={data}
-								// 		id={data.id}
-								// 		key={data.id}
-								// 	/>)
-							}) : null}
+							{this.state.data.map((data: any) => {
+								return (
+									<Option
+										data={data}
+										id={data.id}
+										key={data.id}
+									/>)
+							})
+							}
 						</select>
 					</div>
 				</div>
