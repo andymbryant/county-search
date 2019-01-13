@@ -49,34 +49,28 @@ class App extends Component {
 			}
 		})
 		data.forEach((d, i) => {
+			let childrenStrings: String[] = []
 			children = data.filter((e, j) => {
 				if (e.parent === d.id) {
 					return data.splice(j, 1)
 				}
 			})
+			if (levels.indexOf(d.level) === levels.length - 2) {
+				children.forEach((f) => {
+					childrenStrings.push(f.name)
+				})
+			}
 			if (children.length === 0) {
 				d.isBotLevel = true
 			} else {
 				data.splice(i + 1, 0, ...children)
 				d.isBotLevel = false
 			}
-			// function addBotDescendentsToAncestor(children: any[], id: Number) {
-			// 	data.forEach(f => {
-			// 		if (f.id === id) {
-			// 			f.children = [...children];
-			// 			if (f.parent) {
-			// 				console.log(f)
-			// 				addBotDescendentsToAncestor(children, f.parent)
-			// 			}
-			// 		}
-			// 	})
-			// }
-			// if (levels.indexOf(d.level) === levels.length - 2) {
-			// 	addBotDescendentsToAncestor(children, d.id)
-			// }
+			if (childrenStrings.length > 0) {
+				data[i].children = childrenStrings
+				data[i - 1].children = childrenStrings
+			}
 		})
-		console.log(data)
-
 		this.setState({
 			data,
 			levels
