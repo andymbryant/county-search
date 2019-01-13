@@ -2,8 +2,6 @@
     width: 300px;
     display: block;
     margin: auto;
-    display: flex;
-    flex-direction: column;
 }
 
 .search-field {
@@ -23,11 +21,22 @@
     height: 300px;
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 1rem;
 }
 
 .item {
     width: 100%;
     text-align: left;
-    width: 150px;
+    padding: .3rem 0rem .3rem 0rem;
+}
+
+.high-level {
+    cursor: default;
+}
+
+.bot-level {
+    cursor: pointer;
+}
+
+.bot-level:hover {
+    background-color: var(--highlight-color)
 }
