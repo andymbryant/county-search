@@ -44,16 +44,16 @@ class App extends Component {
 	}
 
 	formatData = (data: any[]) => {
-		//get top level
-		let topLevelData = data.filter(d => d.parent === null)
+		let children: any[] = [];
+		data.forEach((d) => {
+			children = data.filter(e => e.parent === d.id)
+			if (children.length > 0) {
+				d.children = children;
+			}
+		})
 		this.setState({
 			data,
-			topLevelData,
-		}, () => (
-			this.setState({
-				isLoading: false
-			})
-		))
+		})
 	}
 
 	render() {
