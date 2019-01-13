@@ -10,7 +10,7 @@ type MyProps = {
 class SearchBar extends Component<MyProps> {
 
     state = {
-        query: 'f'
+        query: 'fl'
     }
 
     render() {
@@ -21,7 +21,11 @@ class SearchBar extends Component<MyProps> {
 
         if (this.state.query) {
             data = data.filter((d: any) => {
-                return d.name.toLowerCase().includes(query.toLowerCase())
+                if (d.isBotLevel) {
+                    return d.name.toLowerCase().includes(query.toLowerCase())
+                } else {
+                    return true
+                }
             })
         }
 
@@ -31,7 +35,7 @@ class SearchBar extends Component<MyProps> {
                 <div className="search-items">
                     {data.map((item: any) => {
                         style = { "paddingLeft": (levels.indexOf(item.level) + .6) * 1.666667 + "rem" }
-                        if (levels.indexOf(item.level) === levels.length - 1) {
+                        if (item.isBotLevel) {
                             levelClass = 'bot-level'
                         } else {
                             levelClass = 'high-level'

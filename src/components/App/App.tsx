@@ -50,11 +50,12 @@ class App extends Component {
 				}
 			})
 			if (children.length === 0) {
-				d.isBotClass = true
+				d.isBotLevel = true
 			} else {
 				data.splice(i + 1, 0, ...children)
-				d.isBotClass = false
+				d.isBotLevel = false
 			}
+			// d.children = children;
 		})
 		console.log(data)
 		data.forEach((d) => {
