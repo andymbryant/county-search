@@ -10,7 +10,11 @@ type MyProps = {
 class SearchBar extends Component<MyProps> {
 
     state = {
-        query: 'we'
+        query: ''
+    }
+
+    handleChange(event: any) {
+        this.setState({ query: event.target.value });
     }
 
     render() {
@@ -37,9 +41,6 @@ class SearchBar extends Component<MyProps> {
                         return true
                     }
                 }
-                // if (levels.indexOf(e.level) === levels.length -2)
-
-                // })
             })
         }
         if (!data) {
@@ -49,7 +50,11 @@ class SearchBar extends Component<MyProps> {
         }
         return (
             <div className="search-bar">
-                <input type="text" className="search-field" />
+                <input
+                    type="text"
+                    className="search-field"
+                    onChange={(e) => this.handleChange(e)}
+                />
                 <div className="search-items">
                     {data.map((item: any) => {
                         style = { "paddingLeft": (levels.indexOf(item.level) + .6) * 1.666667 + "rem" }
