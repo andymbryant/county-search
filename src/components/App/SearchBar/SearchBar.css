@@ -2,6 +2,7 @@
     width: 300px;
     display: block;
     margin: auto;
+    color: var(--font-color)
 }
 
 .search-field {
@@ -18,7 +19,7 @@
 .search-items {
     width: 100%;
     border: var(--border);
-    height: 300px;
+    height: 412px;
     overflow-y: scroll;
     overflow-x: hidden;
 }

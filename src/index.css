@@ -18,5 +18,6 @@ code {
 
 :root {
   --border: 1px lightgrey solid;
+  --font-color: #656565;
   --highlight-color: #e8f1f6;
 }
