@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
 
-import Option from './Option/Option'
+import SearchBar from './SearchBar/SearchBar'
 import './App.css';
 
-// type MyProps = {
-// }
-
 // type MyState = {
-// 	isLoading: Boolean,
 // 	data: Object[],
-// 	topLevelData: Object[]
+// 	levels: String[],
+// 	isLoading: Boolean
 // }
 
 class App extends Component {
 
 	state = {
-		isLoading: false,
 		data: [],
-		topLevelData: []
+		levels: [],
+		isLoading: false
 	}
 
 	componentDidMount() {
@@ -45,6 +42,7 @@ class App extends Component {
 
 	formatData = (data: any[]) => {
 		let children: any[] = [];
+		let levels: any[] = [];
 		data.forEach((d, i) => {
 			children = data.filter((e, j) => {
 				if (e.parent === d.id) {
@@ -53,37 +51,29 @@ class App extends Component {
 			})
 			data.splice(i + 1, 0, ...children)
 		})
+		data.forEach((d) => {
+			if (!levels.includes(d.level)) {
+				levels.push(d.level)
+			}
+		})
+
 		this.setState({
 			data,
+			levels
+		}, () => this.setState({
 			isLoading: false
-		})
+		}))
 	}
 
 	render() {
-		if (this.state.isLoading) {
-			return <div>Loading</div>
-		} else {
-			return (
-				<div className="App">
-					<header>
-						<h1>County Search</h1>
-					</header>
-					<div className="search-bar">
-						<select name="select" id="search-bar">
-							{this.state.data.map((data: any) => {
-								return (
-									<Option
-										data={data}
-										id={data.id}
-										key={data.id}
-									/>)
-							})
-							}
-						</select>
-					</div>
-				</div>
-			);
-		}
+		return (
+			<div className="App">
+				<header>
+					<h1>County Search</h1>
+				</header>
+				{this.state.data.length !== 0 ? <SearchBar data={this.state.data} /> : null}
+			</div>
+		)
 	}
 }
 
