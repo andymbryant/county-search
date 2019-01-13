@@ -45,20 +45,22 @@ class App extends Component {
 
 	formatData = (data: any[]) => {
 		let children: any[] = [];
-		data.forEach((d) => {
-			children = data.filter(e => e.parent === d.id)
+		data.forEach((d, i) => {
+			children = data.filter((e, i) => { return e.parent === d.id })
 			if (children.length > 0) {
 				d.children = children;
 			}
+
 		})
 		this.setState({
 			data,
+			isLoading: false
 		})
 	}
 
 	render() {
 		if (this.state.isLoading) {
-			return <div></div>
+			return <div>Loading</div>
 		} else {
 			return (
 				<div className="App">
@@ -67,14 +69,14 @@ class App extends Component {
 					</header>
 					<div className="search-bar">
 						<select name="select" id="search-bar">
-							{this.state.topLevelData !== null ? this.state.topLevelData.map((data: any) => {
-								return (
-									<Option
-										allData={this.state.data}
-										data={data}
-										id={data.id}
-										key={data.id}
-									/>)
+							{this.state.data !== null ? this.state.data.map((data: any) => {
+								console.log(data)
+								// return (
+								// 	<Option
+								// 		data={data}
+								// 		id={data.id}
+								// 		key={data.id}
+								// 	/>)
 							}) : null}
 						</select>
 					</div>
