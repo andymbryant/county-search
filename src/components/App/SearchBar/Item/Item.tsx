@@ -10,13 +10,18 @@ type MyProps = {
 }
 
 class Item extends Component<MyProps> {
+    // Create refId, to be updated per instance
     private refId: React.RefObject<HTMLInputElement>;
     constructor(props: MyProps) {
         super(props)
+        // Create React ref using refId
         this.refId = React.createRef()
+        // Proper binding for functions with refs
         this.scrollToItem.bind(this)
     }
 
+    // Checks if ref is instantiated and that it is a bot-level element
+    // Scrolls into view
     scrollToItem = () => {
         const ref = this.refId.current
         if (ref !== null) {
@@ -30,6 +35,7 @@ class Item extends Component<MyProps> {
     render() {
 
         const { style, name, id, levelClass } = this.props;
+
         return (
             <div
                 style={style}
