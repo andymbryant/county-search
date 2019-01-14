@@ -104,12 +104,7 @@ class App extends Component {
 	}
 
 	render() {
-		return (
-			<div className="app">
-				{/* Conditionally render Searchbar if there is data */}
-				{this.state.data.length !== 0 ? <SearchBar data={this.state.data} levels={this.state.levels} /> : null}
-			</div>
-		)
+		return <SearchBar data={this.state.data} levels={this.state.levels} />
 	}
 }
 
