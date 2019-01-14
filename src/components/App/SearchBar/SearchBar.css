@@ -64,6 +64,7 @@
     height: 412px;
     overflow-y: scroll;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 /* Sidebar styling */

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './SearchBar.css';
+import Item from './Item/Item'
 
 // Specify the type of incoming props
 type MyProps = {
@@ -99,7 +100,7 @@ class SearchBar extends Component<MyProps> {
                         className="search-field"
                         onChange={(e) => this.handleChange(e)}
                         onFocus={(e) => this.onFocus(e)}
-                        onBlur={(e) => this.onBlur(e)}
+                    // onBlur={(e) => this.onBlur(e)}
                     />
                     {/* Conditionally render arrow by adding arrow-active class, based on user focus */}
                     <div className="search-toggle">
@@ -125,13 +126,14 @@ class SearchBar extends Component<MyProps> {
                         } else {
                             levelClass = 'high-level'
                         }
-                        return (
-                            <div
-                                style={style}
-                                className={`item ${levelClass}`}
-                                key={item.id}>{item.name}
-                            </div>
-                        )
+                        return <Item
+                            style={style}
+                            name={item.name}
+                            id={item.id}
+                            levelClass={levelClass}
+                            key={item.id}
+                        />
+
                     })}
                 </div>
                     : null}
