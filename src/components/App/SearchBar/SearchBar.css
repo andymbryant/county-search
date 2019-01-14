@@ -1,17 +1,16 @@
 .search-bar {
+    position: absolute;
     width: 300px;
-    display: block;
-    margin: auto;
     color: var(--font-color);
-    position: relative;
+    top: 50%;
+    left: 50%;
 }
 
 .search-field {
     width: 100%;
     border: var(--border);
     padding: .5rem 1rem;
-    display: inline;
-    transition: .5s;
+    transition: .3s;
 }
 
 .search-field:focus {
@@ -36,7 +35,7 @@
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
     border-top: 8px solid grey;
-    transition: .5s;
+    transition: .3s;
 }
 
 .arrow-active {

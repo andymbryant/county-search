@@ -3,12 +3,6 @@ import React, { Component } from 'react';
 import SearchBar from './SearchBar/SearchBar'
 import './App.css';
 
-// type MyState = {
-// 	data: Object[],
-// 	levels: String[],
-// 	isLoading: Boolean
-// }
-
 class App extends Component {
 
 	state = {
@@ -61,7 +55,6 @@ class App extends Component {
 					childrenStrings.push(f.name.toLowerCase())
 				})
 			}
-			// console.log(children)
 			if (children.length === 0) {
 				d.isBotLevel = true
 			} else {
@@ -85,10 +78,7 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="App">
-				<header>
-					<h1>County Search</h1>
-				</header>
+			<div className="app">
 				{this.state.data.length !== 0 ? <SearchBar data={this.state.data} levels={this.state.levels} /> : null}
 			</div>
 		)
