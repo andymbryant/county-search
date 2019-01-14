@@ -118,7 +118,7 @@ class SearchBar extends Component<MyProps> {
                     {filteredData.map((item: any) => {
                         // Conditional indentation, based on index of item level
                         // in the hierarchy mapping "levels", using inline styling
-                        style = { "paddingLeft": (levels.indexOf(item.level) + .6) * 1.666667 + "rem" }
+                        style = { "paddingLeft": (levels.indexOf(item.level) + 1) * 20 + "px" }
                         // Assign classes for conditional CSS
                         if (item.isBotLevel) {
                             levelClass = 'bot-level'
