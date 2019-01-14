@@ -24,13 +24,14 @@ class SearchBar extends Component<MyProps> {
 
     }
 
-    // From input field
+    // On click input field this function runs
     // Captures input text from user, makes it lowercase
     handleChange(event: any) {
         this.setState({ query: event.target.value.toLowerCase() });
     }
 
-    // From cancel button, which appears when user adds text to search field
+    // On click cancel button this function runs
+    // Resets the query, placeholder and deactivates search
     cancel() {
         this.setState({
             query: '',

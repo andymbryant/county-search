@@ -20,8 +20,10 @@ class Item extends Component<MyProps> {
     scrollToItem = () => {
         const ref = this.refId.current
         if (ref !== null) {
-            ref.scrollIntoView();
-            this.props.changePlaceholder(ref.textContent)
+            if (ref.classList.contains('bot-level')) {
+                ref.scrollIntoView();
+                this.props.changePlaceholder(ref.textContent)
+            }
         }
     }
 
