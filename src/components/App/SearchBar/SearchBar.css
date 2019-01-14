@@ -2,7 +2,8 @@
     width: 300px;
     display: block;
     margin: auto;
-    color: var(--font-color)
+    color: var(--font-color);
+    position: relative;
 }
 
 .search-field {
@@ -10,10 +11,36 @@
     border: var(--border);
     border-bottom: none;
     padding: .5rem 1rem;
+    display: inline;
 }
 
 .search-field:focus {
     outline: none;
+}
+
+.search-toggle {
+    position: absolute;
+    top: 7px;
+    right: 0;
+    height: 22px;
+    width: 40px;
+    border-left: var(--border);
+}
+
+.arrow {
+    position: absolute;
+    top: 8px;
+    right: 13px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid grey;
+    transition: .5s;
+}
+
+.arrow-active {
+    transform: rotate(180deg);
 }
 
 .search-items {
@@ -40,4 +67,12 @@
 
 .bot-level:hover {
     background-color: var(--highlight-color)
+}
+
+.cancel {
+    position: absolute;
+    top: .5rem;
+    right: 50px;
+    color: grey;
+    font-size: 1.2rem;
 }
