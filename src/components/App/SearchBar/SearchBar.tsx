@@ -11,26 +11,17 @@ type MyProps = {
 class SearchBar extends Component<MyProps> {
 
     state = {
-        // Boolean representation of whether the user is focused on the search field or not
-        searchFocus: false,
         // User search query
-        query: ''
+        query: '',
+        searchActive: false,
+        placeholder: 'Please select a county'
     }
 
-    // From input field
-    // When input field is focused, the state is updated
-    onFocus(event: any) {
+    activateSearch() {
         this.setState({
-            searchFocus: true
+            searchActive: true
         })
-    }
 
-    // From input field
-    // When input field is not focused, the state is updated
-    onBlur(event: any) {
-        this.setState({
-            searchFocus: false
-        })
     }
 
     // From input field
@@ -42,14 +33,24 @@ class SearchBar extends Component<MyProps> {
     // From cancel button, which appears when user adds text to search field
     cancel() {
         this.setState({
-            query: ''
+            query: '',
+            searchActive: false,
+            placeholder: 'Please select a county'
+        })
+    }
+
+    // Change placeholder
+    // Use arrow function to correctly bind 'this'
+    changePlaceholder = (text: String) => {
+        this.setState({
+            placeholder: text
         })
     }
 
     render() {
         // Destructure props and state
         let { data, levels } = this.props;
-        const { query } = this.state;
+        const { query, searchActive } = this.state;
 
         // Initialize typed variables
         let style = {} as Object;
@@ -81,40 +82,31 @@ class SearchBar extends Component<MyProps> {
             filteredData = data
         }
 
-
-        // if (!filteredData) {
-        //     return (
-        //         <div className="search-bar">
-        //             <input type="text" className="search-field" placeholder="No Results" />
-        //         </div>
-        //     )
-        // }
         return (
             <div className="search-bar">
                 <div className="search-input">
                     {/* Input field with event handlers and functions */}
                     <input
                         type="text"
-                        placeholder="Please select a county"
+                        placeholder={this.state.placeholder}
                         value={this.state.query}
                         className="search-field"
                         onChange={(e) => this.handleChange(e)}
-                        onFocus={(e) => this.onFocus(e)}
-                    // onBlur={(e) => this.onBlur(e)}
+                        onFocus={() => this.activateSearch()}
                     />
                     {/* Conditionally render arrow by adding arrow-active class, based on user focus */}
                     <div className="search-toggle">
-                        {this.state.searchFocus ? <div className="arrow arrow-active"></div> : <div className="arrow"></div>}
+                        {searchActive ? <div className="arrow arrow-active"></div> : <div className="arrow"></div>}
                     </div>
                 </div>
                 {/* Conditionally render cancel button, based on existence of user input - query */}
-                {this.state.query ?
+                {this.state.searchActive ?
                     <div
                         className="cancel"
                         onClick={() => this.cancel()}
                     >X</div> : null}
                 {/* Conditionally show search items, based on user focus */}
-                {this.state.searchFocus ? <div className="search-items">
+                {searchActive ? <div className="search-items">
                     {/* Loop through filtered data, returning a div for reach item in list */}
                     {filteredData.map((item: any) => {
                         // Conditional indentation, based on index of item level
@@ -131,6 +123,7 @@ class SearchBar extends Component<MyProps> {
                             name={item.name}
                             id={item.id}
                             levelClass={levelClass}
+                            changePlaceholder={this.changePlaceholder}
                             key={item.id}
                         />
 

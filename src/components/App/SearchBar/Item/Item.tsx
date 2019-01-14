@@ -6,6 +6,7 @@ type MyProps = {
     name: String,
     id: Number,
     levelClass: String,
+    changePlaceholder: Function
 }
 
 class Item extends Component<MyProps> {
@@ -17,9 +18,10 @@ class Item extends Component<MyProps> {
     }
 
     scrollToItem = () => {
-        if (this.refId.current !== null) {
-            console.log(this.refId.current.offsetTop)
-            this.refId.current.scrollIntoView();
+        const ref = this.refId.current
+        if (ref !== null) {
+            ref.scrollIntoView();
+            this.props.changePlaceholder(ref.textContent)
         }
     }
 

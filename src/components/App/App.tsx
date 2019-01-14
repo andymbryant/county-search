@@ -104,7 +104,11 @@ class App extends Component {
 	}
 
 	render() {
-		return <SearchBar data={this.state.data} levels={this.state.levels} />
+		return (
+			<div className="app">
+				<SearchBar data={this.state.data} levels={this.state.levels} />
+			</div>
+		)
 	}
 }
 
