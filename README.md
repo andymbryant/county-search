@@ -14,7 +14,7 @@ This is an application for searching the counties of the United States. Built wi
 
 ```sh
 git clone
-cd into the directory
+cd county-search
 npm install
 yarn start
 ```
