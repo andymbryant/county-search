@@ -9,9 +9,9 @@
 .search-field {
     width: 100%;
     border: var(--border);
-    border-bottom: none;
     padding: .5rem 1rem;
     display: inline;
+    transition: .5s;
 }
 
 .search-field:focus {
@@ -46,6 +46,7 @@
 .search-items {
     width: 100%;
     border: var(--border);
+    border-top: none;
     height: 412px;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -75,4 +76,5 @@
     right: 50px;
     color: grey;
     font-size: 1.2rem;
+    cursor: pointer;
 }

@@ -31,6 +31,12 @@ class SearchBar extends Component<MyProps> {
         this.setState({ query: event.target.value.toLowerCase() });
     }
 
+    cancel() {
+        this.setState({
+            query: ''
+        })
+    }
+
     render() {
         let { data, levels } = this.props;
         const { query } = this.state;
@@ -67,6 +73,8 @@ class SearchBar extends Component<MyProps> {
                 <div className="search-input">
                     <input
                         type="text"
+                        placeholder="Please select a county"
+                        value={this.state.query}
                         className="search-field"
                         onChange={(e) => this.handleChange(e)}
                         onFocus={(e) => this.onFocus(e)}
@@ -76,8 +84,12 @@ class SearchBar extends Component<MyProps> {
                         {this.state.searchFocus ? <div className="arrow arrow-active"></div> : <div className="arrow"></div>}
                     </div>
                 </div>
-                {this.state.query ? <div className="cancel">X</div> : null}
-                <div className="search-items">
+                {this.state.query ?
+                    <div
+                        className="cancel"
+                        onClick={() => this.cancel()}
+                    >X</div> : null}
+                {this.state.searchFocus ? <div className="search-items">
                     {filteredData.map((item: any) => {
                         style = { "paddingLeft": (levels.indexOf(item.level) + .6) * 1.666667 + "rem" }
                         if (item.isBotLevel) {
@@ -94,6 +106,7 @@ class SearchBar extends Component<MyProps> {
                         )
                     })}
                 </div>
+                    : null}
             </div>
         )
     }
