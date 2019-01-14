@@ -6,11 +6,11 @@
 
 Search the counties of the United States.
 
-- [USA County Data](#https://api.myjson.com/bins/dbg52) – Data API
+- [USA County Data](https://api.myjson.com/bins/dbg52) – API Endpoint
 
 This is an application for searching the counties of the United States. Built with Create React App and TypeScript.
 
-## Get Started
+### Get Started
 
 ```sh
 git clone
