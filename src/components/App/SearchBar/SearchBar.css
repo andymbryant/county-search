@@ -1,7 +1,7 @@
 .search-bar {
     position: relative;
     margin: auto;
-    width: 300px;
+    width: 500px;
     color: var(--font-color);
     top: 30vh;
 }
@@ -28,13 +28,14 @@
 
 .arrow {
     position: absolute;
-    top: 8px;
+    top: 6px;
     right: 13px;
     width: 0;
     height: 0;
     border-left: 8px solid transparent;
     border-right: 8px solid transparent;
-    border-top: 8px solid grey;
+    border-top: 10px solid grey;
+    border-radius: 3px;
     transition: .3s;
 }
 
@@ -49,6 +50,19 @@
     height: 412px;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+.search-items::-webkit-scrollbar-track {
+    background-color: #e3e3e3;
+}
+
+.search-items::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+.search-items::-webkit-scrollbar-thumb {
+    background-color: #939393;
 }
 
 .item {
