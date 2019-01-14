@@ -43,6 +43,7 @@ class App extends Component {
 	formatData = (data: any[]) => {
 		let children: any[] = [];
 		let levels: any[] = [];
+		let filteredData: any[] = [];
 		data.forEach((d) => {
 			if (!levels.includes(d.level)) {
 				levels.push(d.level)
@@ -52,14 +53,15 @@ class App extends Component {
 			let childrenStrings: String[] = []
 			children = data.filter((e, j) => {
 				if (e.parent === d.id) {
-					return data.splice(j, 1)
+					return d
 				}
 			})
 			if (levels.indexOf(d.level) === levels.length - 2) {
 				children.forEach((f) => {
-					childrenStrings.push(f.name)
+					childrenStrings.push(f.name.toLowerCase())
 				})
 			}
+			// console.log(children)
 			if (children.length === 0) {
 				d.isBotLevel = true
 			} else {
@@ -71,8 +73,10 @@ class App extends Component {
 				data[i - 1].children = childrenStrings
 			}
 		})
+		//remove duplicates
+		filteredData = Array.from(new Set(data));
 		this.setState({
-			data,
+			data: filteredData,
 			levels
 		}, () => this.setState({
 			isLoading: false

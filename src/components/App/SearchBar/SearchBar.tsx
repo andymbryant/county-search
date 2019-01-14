@@ -14,7 +14,7 @@ class SearchBar extends Component<MyProps> {
     }
 
     handleChange(event: any) {
-        this.setState({ query: event.target.value });
+        this.setState({ query: event.target.value.toLowerCase() });
     }
 
     render() {
@@ -22,28 +22,28 @@ class SearchBar extends Component<MyProps> {
         const { query } = this.state;
         let style = {} as Object;
         let levelClass: String = '';
-        let levelDifference: Number = 0;
+        let filteredData: any[] = [];
 
-        if (this.state.query) {
-            data = data.filter((d: any, i: any) => {
-                if (d.isBotLevel) {
-                    return d.name.toLowerCase().includes(query.toLowerCase());
-                } else {
-                    return true;
-                }
-            })
-            data = data.filter((e: any, j: any) => {
-                if (e.isBotLevel) {
-                    return true
-                } else {
-                    levelDifference = Math.abs(levels.indexOf(e.level) - (levels.length))
-                    if (data[j + levelDifference].isBotLevel) {
+        function filterItems(item: any) {
+            if (!item.isBotLevel) {
+                for (let d of item.children) {
+                    if (d.indexOf(query) !== -1) {
                         return true
                     }
                 }
-            })
+            } else {
+                return item.name.toLowerCase().includes(query)
+            }
         }
-        if (!data) {
+
+        if (this.state.query) {
+            filteredData = data.filter(filterItems)
+        }
+        if (filteredData.length === 0 && !this.state.query) {
+            filteredData = data
+        }
+
+        if (!filteredData) {
             <div className="search-bar">
                 <input type="text" className="search-field" placeholder="No Results" />
             </div>
@@ -56,7 +56,7 @@ class SearchBar extends Component<MyProps> {
                     onChange={(e) => this.handleChange(e)}
                 />
                 <div className="search-items">
-                    {data.map((item: any) => {
+                    {filteredData.map((item: any) => {
                         style = { "paddingLeft": (levels.indexOf(item.level) + .6) * 1.666667 + "rem" }
                         if (item.isBotLevel) {
                             levelClass = 'bot-level'
